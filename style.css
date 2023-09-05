@@ -10,150 +10,114 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(45deg, #833434, #064667);
+  background: #25252b;
 }
-#city {
+.box {
   position: relative;
-  transform-style: preserve-3d;
-  animation: animate 10s linear infinite;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: repeating-conic-gradient(
+    from var(--a),
+    #ff2770 0%,
+    #ff2770 5%,
+    transparent 5%,
+    transparent 35%,
+    #ff2770 50%
+  );
+  animation: animate 4s linear infinite;
+  border-radius: 20px;
+}
+.box::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-conic-gradient(
+    from var(--a),
+    #45f3ff 0%,
+    #45f3ff 5%,
+    transparent 5%,
+    transparent 35%,
+    #45f3ff 50%
+  );
+  animation: animate 4s linear infinite;
+  border-radius: 20px;
+  animation-delay: -1s;
+}
+@property --a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 @keyframes animate {
   0% {
-    transform: rotateX(-30deg) rotateY(360deg);
+    --a: 0deg;
   }
   100% {
-    transform: rotateX(-30deg) rotateY(0deg);
+    --a: 360deg;
   }
 }
-#city::before {
+.box::after {
   content: "";
   position: absolute;
-  top: -150vh;
-  left: 0;
-  width: 400vh;
-  height: 400vh;
-  background: linear-gradient(45deg, #833434, #064667);
-  transform: translate(-50%, 250px) rotateX(90deg);
+  inset: 8px;
+  background: #2d2d39;
+  border-radius: 15px;
+  border: 9px solid #25252b;
 }
-.skyscrapper {
+.box form {
   position: relative;
-  width: 200px;
-  height: 600px;
-  transform-style: preserve-3d;
-}
-.skyscrapper .top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 200px;
-  background: var(--clr);
-  transform: rotateX(90deg) translateZ(100px);
-  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.35),
-    inset 0 0 0 5px rgba(0, 0, 0, 0.25);
-}
-.skyscrapper div {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 40px;
+  z-index: 10000;
 }
-.skyscrapper div span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+.box form h2 {
+  color: #fff;
+  font-weight: 600;
+}
+.box form input {
+  position: relative;
+  width: 85%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+}
+.box form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.box form input[type="submit"] {
+  font-weight: 600;
   background: #fff;
-  height: 100%;
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.25);
+  color: #2d2d39;
+  cursor: pointer;
+  transition: 0.5s;
 }
-.skyscrapper div span:nth-child(1) {
-  transform: rotateY(0deg) translate3d(0, 0, 100px);
-  background: linear-gradient(to bottom, transparent 50%, var(--clr) 50%),
-    linear-gradient(to right, #999 50%, var(--clr) 50%);
-  background-size: 6px 6px;
+.box form input[type="submit"]:hover {
+  background: #ff2770;
 }
-.skyscrapper div span:nth-child(2) {
-  transform: rotateY(90deg) translate3d(0, 0, 100px);
-  background: linear-gradient(to right, #999 50%, var(--clr) 50%);
-  background-size: 6px 6px;
+.box form .group {
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
 }
-.skyscrapper div span:nth-child(3) {
-  transform: rotateY(180deg) translate3d(0, 0, 100px);
-  background: linear-gradient(to bottom, transparent 50%, var(--clr) 50%),
-    linear-gradient(to right, #999 50%, var(--clr) 50%);
-  background-size: 6px 6px;
+.box form .group a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
 }
-.skyscrapper div span:nth-child(4) {
-  transform: rotateY(270deg) translate3d(0, 0, 100px);
-  background: linear-gradient(to right, #999 50%, var(--clr) 50%);
-  background-size: 6px 6px;
-}
-.skyscrapper .bottom {
-  position: absolute;
-  left: -25px;
-  width: 250px;
-  height: 250px;
-  background: var(--clr);
-  transform: rotateX(90deg) translateZ(-480px);
-  border: 4px solid var(--clr);
-}
-.skyscrapper.two {
-  position: absolute;
-  top: 0;
-  left: -300px;
-  transform-origin: bottom;
-  transform: translateZ(-100px) scaleY(1.25);
-}
-.skyscrapper.three {
-  position: absolute;
-  top: 0;
-  left: -300px;
-  transform-origin: bottom;
-  transform: translateZ(-400px) scaleX(0.5);
-}
-.skyscrapper.four {
-  position: absolute;
-  top: 0;
-  left: 300px;
-  transform-origin: bottom;
-  transform: translateZ(50px) scaleY(1.15);
-}
-.skyscrapper.five {
-  position: absolute;
-  top: 0;
-  left: 100px;
-  transform-origin: bottom;
-  transform: translateZ(-600px) scaleY(1.75);
-}
-.skyscrapper.six {
-  position: absolute;
-  top: 0;
-  left: 100px;
-  transform-origin: bottom;
-  transform: translateZ(600px) scaleY(1.25);
-}
-.skyscrapper.seven {
-  position: absolute;
-  top: 0;
-  left: 500px;
-  transform-origin: bottom;
-  transform: translateZ(400px) scaleY(0.5);
-}
-.skyscrapper.eight {
-  position: absolute;
-  top: 0;
-  left: 500px;
-  transform-origin: bottom;
-  transform: translateZ(-400px) scaleY(2);
-}
-.skyscrapper.nine {
-  position: absolute;
-  top: 0;
-  left: -500px;
-  transform-origin: bottom;
-  transform: translateZ(45px) scaleY(0.5);
+.box form .group a:last-child {
+  color: #45f3ff;
+  font-weight: 500;
 }
